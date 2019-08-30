@@ -7,7 +7,7 @@ public class SignUp
         Scanner scan = new Scanner( System.in );
         String proposed_username, proposed_password, first_letter;
         String[] vowels, symbols;
-        boolean first_letter_vowel = false, symbol_present = false;
+        boolean first_letter_vowel = false, symbol_present = false, password_in_username = false;
         
 
         System.out.println("Enter your proposed username: ");
@@ -44,5 +44,14 @@ public class SignUp
         }
 
         System.out.println(symbol_present);
+
+        // username in password
+
+        if (proposed_password.contains(proposed_username))
+        {
+            password_in_username = true;
+        }
+
+        System.out.println(password_in_username);
     }
 }
