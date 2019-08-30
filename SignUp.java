@@ -6,8 +6,8 @@ public class SignUp
     {
         Scanner scan = new Scanner( System.in );
         String proposed_username, proposed_password, first_letter;
-        String[] vowels;
-        boolean first_letter_vowel = false;
+        String[] vowels, symbols;
+        boolean first_letter_vowel = false, symbol_present = false;
         
 
         System.out.println("Enter your proposed username: ");
@@ -29,7 +29,20 @@ public class SignUp
             }
         }
 
-            System.out.println(first_letter_vowel);
+        System.out.println(first_letter_vowel);
 
+        // symbol present check:
+
+        symbols = new String[]{"#", "!", "$", "&", "*"};
+
+        for (String symbol : symbols)
+        {
+            if ((proposed_password).contains(symbol))
+            {
+                symbol_present = true;
+            }
+        }
+
+        System.out.println(symbol_present);
     }
 }
