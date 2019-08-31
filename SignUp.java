@@ -6,8 +6,9 @@ public class SignUp
     {
         Scanner scan = new Scanner( System.in );
         String proposed_username, proposed_password, first_letter;
-        String[] vowels, symbols;
+        String[] vowels, symbols, all_but_last_two_letters;
         boolean first_letter_vowel = false, symbol_present = false, password_in_username = false;
+        int length_of_password_minus_two;
         
 
         System.out.println("Enter your proposed username: ");
@@ -45,7 +46,7 @@ public class SignUp
 
         System.out.println(symbol_present);
 
-        // username in password
+        // username in password:
 
         if (proposed_password.contains(proposed_username))
         {
@@ -53,5 +54,21 @@ public class SignUp
         }
 
         System.out.println(password_in_username);
+
+        // // no numbers except in last two places
+
+        // length_of_password_minus_two = proposed_password.length() - 2;
+        // all_but_last_two_letters = new String[]{};
+        
+        // for (int i = 0; i <= length_of_password_minus_two; i++)
+        // {
+            
+        //     System.out.println(all_but_last_two_letters[i + 1]); //= "p";//proposed_password.substring(i, i + 1);
+        // }
+        
+        
+        // System.out.println(all_but_last_two_letters);
+
+        // System.out.println(proposed_password.length());
     }
 }
