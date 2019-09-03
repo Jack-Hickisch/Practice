@@ -6,8 +6,8 @@ public class SignUp
     {
         Scanner scan = new Scanner( System.in );
         String proposed_username, proposed_password, first_letter;
-        String[] vowels, symbols, all_but_last_two_letters;
-        boolean first_letter_vowel = false, symbol_present = false, password_in_username = false;
+        String[] vowels, symbols, all_but_last_two_letters, list_of_numbers, taken_usernames;
+        boolean first_letter_vowel = false, symbol_present = false, password_in_username = false, number_in_all_but_last_two = false, already_a_username = false;
         int length_of_password_minus_two;
         
 
@@ -30,8 +30,6 @@ public class SignUp
             }
         }
 
-        System.out.println(first_letter_vowel);
-
         // symbol present check:
 
         symbols = new String[]{"#", "!", "$", "&", "*"};
@@ -44,8 +42,6 @@ public class SignUp
             }
         }
 
-        System.out.println(symbol_present);
-
         // username in password:
 
         if (proposed_password.contains(proposed_username))
@@ -53,24 +49,52 @@ public class SignUp
             password_in_username = true;
         }
 
-        System.out.println(password_in_username);
+        // no numbers except in last two places
 
-        // // no numbers except in last two places
-
-        // length_of_password_minus_two = proposed_password.length() - 2;
-        // all_but_last_two_letters = new String[]{};
-        
-        // for (int i = 0; i <= length_of_password_minus_two; i++)
-        // {
+        if (proposed_password.length() <= 2)
+        {
+            length_of_password_minus_two = proposed_password.length() - 2;
+            all_but_last_two_letters = new String[length_of_password_minus_two];
             
-        //     System.out.println(all_but_last_two_letters[i + 1]); //= "p";//proposed_password.substring(i, i + 1);
-        // }
-        
-        
-        // System.out.println(all_but_last_two_letters);
+            for (int i = 0; i < length_of_password_minus_two; i++)
+            {
+                all_but_last_two_letters[i] = proposed_password.substring(i, i + 1);
+            }
+            
+            list_of_numbers = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
 
-        // System.out.println(proposed_password.length());
+            for (String number_in_password : all_but_last_two_letters)
+            {
+                for (String number_compare_to : list_of_numbers)
+                {
+                    if (number_in_password.equals(number_compare_to))
+                    {
+                        number_in_all_but_last_two = true;
+                    }
+                }
+            }
+        }
+        
 
-        //
+        // compare to users that already exist
+
+        taken_usernames = new String[]{"admin", "person", "jimbob234", "skater_gurl17", "gary"};
+
+        for (String taken_username : taken_usernames)
+        {
+            if (taken_username.equals(proposed_username))
+            {
+                already_a_username = true;
+            }
+        }
+
+        if (first_letter_vowel && symbol_present && !password_in_username && !number_in_all_but_last_two && !already_a_username)
+        {
+            System.out.println("Your password works! Congrats!!!");
+        }
+        else
+        {
+            System.out.println("Your password does not work, try again");
+        }
     }
 }
